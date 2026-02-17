@@ -1,9 +1,12 @@
-# Register your models here.
 from django.contrib import admin
-from .models import Task
+from .models import Task, Category
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'user', 'color']
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['title', 'user', 'completed', 'created_at']
-    list_filter = ['completed', 'created_at']
+    list_display = ['title', 'user', 'category', 'completed', 'created_at']
+    list_filter = ['completed', 'category', 'created_at']
     search_fields = ['title', 'description']

@@ -1,7 +1,16 @@
-# Create your models here.
-
 from django.db import models
 from django.contrib.auth.models import User
+
+class Category(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    color = models.CharField(max_length=7, default='#007bff')  # Hex color code
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Categories'
 
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -9,6 +18,7 @@ class Task(models.Model):
     description = models.TextField(blank=True)
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     
     def __str__(self):
         return self.title

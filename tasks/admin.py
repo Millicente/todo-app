@@ -7,6 +7,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['title', 'user', 'category', 'completed', 'created_at']
-    list_filter = ['completed', 'category', 'created_at']
+    list_display = ['title', 'user', 'category', 'due_date', 'due_time', 'completed', 'created_at']
+    list_filter = ['completed', 'category', 'due_date', 'created_at']
     search_fields = ['title', 'description']

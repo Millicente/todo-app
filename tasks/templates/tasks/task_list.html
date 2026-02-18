@@ -27,7 +27,7 @@
             border-radius: 5px;
             margin-bottom: 20px;
         }
-        input[type="text"], textarea, select {
+        input[type="text"], textarea, select, input[type="date"], input[type="time"] {
             width: 100%;
             padding: 10px;
             margin: 5px 0;
@@ -95,7 +95,14 @@
         .logout-btn:hover {
             text-decoration: underline;
         }
-        .messages { color: green; font-weight: bold; }
+        .messages { 
+            color: green; 
+            font-weight: bold;
+            padding: 10px;
+            background: #d4edda;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -155,7 +162,8 @@
     {% if tasks %}
         {% for task in tasks %}
             <div class="task {% if task.completed %}completed{% endif %}"
-                 style="border-left-color: {% if task.category %}{{ task.category.color }}{% else %}#ddd{% endif %};">
+                 style="border-left-color: {% if task.category %}{{ task.category.color }}{% else %}#ddd{% endif %};
+                        {% if task.is_overdue %}background: #ffe6e6;{% elif task.is_due_today %}background: #fff9e6;{% endif %}">
                 <h3>
                     <a href="{% url 'tasks:toggle_task' task.id %}" style="text-decoration: none; margin-right: 10px;">
                         {% if task.completed %}✅{% else %}⬜{% endif %}
@@ -166,11 +174,24 @@
                             {{ task.category.name }}
                         </span>
                     {% endif %}
+                    {% if task.is_overdue %}
+                        <span style="color: red; font-size: 14px; margin-left: 10px;">⚠️ OVERDUE</span>
+                    {% elif task.is_due_today %}
+                        <span style="color: orange; font-size: 14px; margin-left: 10px;">📅 DUE TODAY</span>
+                    {% endif %}
                 </h3>
                 {% if task.description %}
                     <p>{{ task.description }}</p>
                 {% endif %}
-                <small>Created: {{ task.created_at|date:"M d, Y" }}</small>
+                <small>
+                    Created: {{ task.created_at|date:"M d, Y" }}
+                    {% if task.due_date %}
+                        | 📅 Due: {{ task.due_date|date:"M d, Y" }}
+                        {% if task.due_time %}
+                            at {{ task.due_time|time:"g:i A" }}
+                        {% endif %}
+                    {% endif %}
+                </small>
                 <div style="margin-top: 10px;">
                     <a href="{% url 'tasks:edit_task' task.id %}" 
                        style="background: #2196F3; color: white; padding: 5px 10px; 

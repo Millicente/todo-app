@@ -22,10 +22,12 @@ class CategoryForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['title', 'description', 'completed', 'category']
+        fields = ['title', 'description', 'completed', 'category', 'due_date', 'due_time']
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Enter task title'}),
             'description': forms.Textarea(attrs={'placeholder': 'Optional description', 'rows': 3}),
+            'due_date': forms.DateInput(attrs={'type': 'date'}),
+            'due_time': forms.TimeInput(attrs={'type': 'time'}),
         }
     
     def __init__(self, user=None, *args, **kwargs):

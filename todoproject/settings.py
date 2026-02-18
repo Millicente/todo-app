@@ -120,3 +120,21 @@ STATIC_URL = 'static/'
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ambrosemillicent10@gmail.com'  # Change this
+EMAIL_HOST_PASSWORD = 'menefktbuatiyvjm'  # Change this
+DEFAULT_FROM_EMAIL = 'ambrosemillicent10@gmail.com'  # Change this
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ambrosemillicent10@gmail.com'  # Replace with your Gmail
+EMAIL_HOST_PASSWORD = 'menefktbuatiyvjm'  # Replace with app password (no spaces)
+DEFAULT_FROM_EMAIL = 'ambrosemillicent10@gmail.com'  # Replace with your Gmail

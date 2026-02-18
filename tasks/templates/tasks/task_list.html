@@ -73,12 +73,28 @@
             padding-bottom: 10px;
             border-bottom: 2px solid #eee;
         }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
         .nav-links a {
-            margin-left: 15px;
             color: #4CAF50;
             text-decoration: none;
         }
         .nav-links a:hover { text-decoration: underline; }
+        .logout-btn {
+            background: none;
+            color: #4CAF50;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+            text-decoration: none;
+        }
+        .logout-btn:hover {
+            text-decoration: underline;
+        }
         .messages { color: green; font-weight: bold; }
     </style>
 </head>
@@ -87,7 +103,10 @@
         <h1>📝 My Todo List</h1>
         <div class="nav-links">
             <a href="{% url 'tasks:add_category' %}">+ Add Category</a>
-            <a href="{% url 'logout' %}">Logout</a>
+            <form method="POST" action="{% url 'logout' %}" style="display: inline; margin: 0;">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
         </div>
     </div>
 

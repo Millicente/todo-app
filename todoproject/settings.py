@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-xxnl*g^cg-f6m)+jsr+^$
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['todo-app-production-9acb.up.railway.app', 'localhost', '127.0.0.1']
-
+CSRF_TRUSTED_ORIGINS = ['https://todo-app-production-9acb.up.railway.app']
 
 # Application definition
 

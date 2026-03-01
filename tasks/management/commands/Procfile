@@ -1,0 +1,2 @@
+web: gunicorn todoproject.wsgi --log-file -
+worker: python clock.py
